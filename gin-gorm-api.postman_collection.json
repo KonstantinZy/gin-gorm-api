@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "d6bd8965-9f40-404e-b1e4-4afcfb3d1338",
+		"name": "gin-gorm-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"task name\",\n\t\"description\": \"task description\",\n\t\"start\": 1662631155,\n\t\"finish\": 1662717555,\n\t\"subtasks\": [\n\t{\n\t\t\"description\": \"description subtask 1\"\n\t},\n\t{\n\t\t\"description\": \"description subtask 2\"\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"task name updated\",\n\t\"description\": \"description task updated\",\n\t\"start\": 1662831155,\n\t\"finish\": 1662917555,\n\t\"subtasks\": [\n\t{\n        \"id\" :1,\n\t\t\"description\": \"description subtask 1 updated\"\n\t},\n\t{\n        \"id\" :2,\n\t\t\"description\": \"descripton subtask 2 updated\"\n\t},\n    {\n\t\t\"description\": \"new subtask from update\"\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/task/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/task/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/task"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/task/1"
+			},
+			"response": []
+		}
+	]
+}
