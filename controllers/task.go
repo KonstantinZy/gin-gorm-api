@@ -6,11 +6,19 @@ import (
 	"net/http"
 	"time"
 
-	"example/api/models"
+	"github.com/KonstantinZy/gin-gorm-api/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
+
+func RegisterTaskURI(r *gin.Engine) {
+	r.POST("/task", CreateOneTask)
+	r.GET("/task", Get)
+	r.GET("/task/:id", GetOneTask)
+	r.PATCH("/task/:id", UpdateTask)
+	r.DELETE("/task/:id", DeleteTask)
+}
 
 type CreateTaskInput struct {
 	Name        string              `json:"name" binding:"required"`
@@ -60,7 +68,7 @@ func CreateOneTask(c *gin.Context) {
 	if err := models.DB.Create(&task).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"data": "Ok"})
+		c.JSON(http.StatusOK, gin.H{"data": map[string]uint{"id": task.ID}})
 	}
 }
 
@@ -145,12 +153,12 @@ func UpdateTask(c *gin.Context) {
 // GET /task
 // get all tasks
 func Get(c *gin.Context) {
-	var task2 []models.Task
-	err := models.DB.Model(&models.Task{}).Preload("SubTasks").Find(&task2).Error
+	var tasks []models.Task
+	err := models.DB.Model(&models.Task{}).Preload("SubTasks").Find(&tasks).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"data": task2})
+		c.JSON(http.StatusOK, gin.H{"data": tasks})
 	}
 }
 

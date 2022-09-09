@@ -14,8 +14,8 @@ var (
 )
 
 // open/create database for storing data
-func init() {
-	dbLocal, err := gorm.Open(sqlite.Open("api.db"), &gorm.Config{})
+func StartDB(dbFilename string) {
+	dbLocal, err := gorm.Open(sqlite.Open(dbFilename), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

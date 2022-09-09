@@ -25,5 +25,5 @@ type SubTask struct {
 	UpdatedAt   time.Time      `json:"updatedAt"`
 	Deleted     gorm.DeletedAt `gorm:"index" json:"deleted"`
 	Description string         `json:"description"`
-	TaskID      uint           `json:"-"`
+	TaskID      uint           `json:"taskId"`
 }
